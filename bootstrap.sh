@@ -60,14 +60,15 @@ fi
 
 
 # Include zsh-quick-boot on the .zshrc
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 touch "$HOME/.zshrc"
-PATCH_START="# >>> zsh-quick-boot import start (added by zqb) >>>"
+PATCH_START="# >>> zsh-quick-boot import start >>>"
 if ! grep -Fq "$PATCH_START" "$HOME/.zshrc"; then
-  cat >>"$HOME/.zshrc" <<'EOF'
+  cat >>"$HOME/.zshrc" <<EOF
 
 # >>> zsh-quick-boot import start (added by zqb) >>>
-if [[ -f "$HOME/zsh-quick-boot/dotfiles/.zshrc" ]]; then
-  source "$HOME/zsh-quick-boot/dotfiles/.zshrc"
+if [[ -f "${SCRIPT_DIR}/dotfiles/.zshrc" ]]; then
+  source "${SCRIPT_DIR}/dotfiles/.zshrc"
 fi
 # <<< zsh-quick-boot import end <<<
 EOF
