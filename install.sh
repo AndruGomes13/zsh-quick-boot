@@ -86,8 +86,8 @@ fi
 
 # Set zsh as the default shell
 ZSH_BIN="$(command -v zsh)"
-if [[ "$SHELL" != "$ZSH_BIN" ]]; then
-  chsh -s "$ZSH_BIN"
+if [[ "$SHELL" != "$ZSH_BIN" ]] && tty -s; then
+   chsh -s "$ZSH_BIN"
 fi
 
 echo "✅ All done! Restart your shell or run: zsh"
