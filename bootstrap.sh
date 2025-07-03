@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+
+apt install sudo
+apt install curl
+
+
 # 1. detect platform
 OS="$(uname -s)"
 case "$OS" in
@@ -64,8 +69,13 @@ if ! command -v fzf &>/dev/null; then
   ~/.fzf/install --bin --no-key-bindings --no-completion --no-update-rc
 fi
 
-# Include zsh-quick-boot on the .zshrc
+# Include p10k config
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+if [[ ! -f "$HOME/.p10k.zsh" ]]; then
+  cp "$SCRIPT_DIR/dotfiles/.p10k.zsh" "$HOME/.p10k.zsh"   # or your own
+fi
+
+# Include zsh-quick-boot on the .zshrc
 touch "$HOME/.zshrc"
 PATCH_START="# >>> zsh-quick-boot import start >>>"
 if ! grep -Fq "$PATCH_START" "$HOME/.zshrc"; then
