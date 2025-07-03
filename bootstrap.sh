@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-
-apt install sudo
-apt install curl
-
-
 # 1. detect platform
 OS="$(uname -s)"
 case "$OS" in
