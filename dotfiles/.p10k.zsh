@@ -796,6 +796,25 @@
   # Custom icon.
   # typeset -g POWERLEVEL9K_DISK_USAGE_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
+  ###################################[ MINE: Docker Context ] ##################################
+  # ── Docker context segment ─────────────────────────────────────────────
+  function prompt_docker_context() {
+    local ctx=${DOCKER_CONTEXT:-$(command docker context show 2>/dev/null)}
+
+    # hide when empty, "default", or Docker Desktop's dummy context
+    [[ -z $ctx || $ctx == default || $ctx == desktop-linux ]] && return
+
+    # whale icon, blue text, grey bg
+    p10k segment -i '🐳' -f 33 -b 237 -t "$ctx"
+  }
+
+  # left prompt elements (keep your newline + prompt_char style)
+  typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+    dir vcs docker_context 
+    newline                 # \n
+      prompt_char
+  )
+
   ######################################[ ram: free RAM ]#######################################
   # RAM color.
   typeset -g POWERLEVEL9K_RAM_FOREGROUND=66
