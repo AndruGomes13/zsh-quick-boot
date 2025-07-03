@@ -1,6 +1,0 @@
-
-# >>> zsh-quick-boot import start (added by zqb) >>>
-if [[ -f "/Users/andru/Repos/zsh-quick-boot/dotfiles/.zshrc" ]]; then
-  source "/Users/andru/Repos/zsh-quick-boot/dotfiles/.zshrc"
-fi
-# <<< zsh-quick-boot import end <<<
