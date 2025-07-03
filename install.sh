@@ -90,4 +90,4 @@ if [[ "$SHELL" != "$ZSH_BIN" ]]; then
   chsh -s "$ZSH_BIN"
 fi
 
-echo "✅ All done! Restart your shell or run: exec zsh"
+echo "✅ All done! Restart your shell or run: zsh"
