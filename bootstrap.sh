@@ -22,11 +22,11 @@ install_pkgs() {
     brew update
     brew install git curl zsh fzf
   else
-    if   command -v apt   &>/dev/null; then sudo apt update && sudo apt install -y git curl zsh fzf
-    elif command -v dnf   &>/dev/null; then sudo dnf install -y git curl zsh fzf
-    elif command -v pacman&>/dev/null; then sudo pacman -Sy --noconfirm git curl zsh fzf
+    if   command -v apt   &>/dev/null; then sudo apt update && sudo apt install -y git curl zsh
+    elif command -v dnf   &>/dev/null; then sudo dnf install -y git curl zsh
+    elif command -v pacman&>/dev/null; then sudo pacman -Sy --noconfirm git curl zsh
     else
-      echo "❌ No supported package manager (apt, dnf, pacman) found. Install git/curl/zsh/fzf manually." >&2
+      echo "❌ No supported package manager (apt, dnf, pacman) found. Install git/curl/zsh manually." >&2
       exit 1
     fi
   fi
@@ -58,6 +58,11 @@ if [[ ! -d "$ZSH_SYNTAX_HIGHLIGHTING_DIR" ]]; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_SYNTAX_HIGHLIGHTING_DIR"
 fi
 
+# Install fzf
+if ! command -v fzf &>/dev/null; then
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install --bin --no-key-bindings --no-completion --no-update-rc
+fi
 
 # Include zsh-quick-boot on the .zshrc
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"

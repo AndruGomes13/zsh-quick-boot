@@ -13,4 +13,4 @@ source "$ZSH/oh-my-zsh.sh"
 
 # load your one-and-done p10k config
 [[ -f "$HOME/.p10k.zsh" ]] && source "$HOME/.p10k.zsh"
-# [ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
+[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
