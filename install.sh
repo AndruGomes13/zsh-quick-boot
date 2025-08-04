@@ -22,6 +22,11 @@ install_pkgs() {
     brew update
     brew install git curl zsh fzf
   else
+    if ! has_sudo; then
+      echo "⚠️  No sudo privileges detected; skipping system package installs." >&2
+      return 0
+    fi
+    
     if   command -v apt   &>/dev/null; then sudo apt update && sudo apt install -y git curl zsh
     elif command -v dnf   &>/dev/null; then sudo dnf install -y git curl zsh
     elif command -v pacman&>/dev/null; then sudo pacman -Sy --noconfirm git curl zsh
