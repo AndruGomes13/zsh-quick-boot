@@ -18,7 +18,7 @@
 ## Installation
 
 ```sh
-git clone https://github.com/yourusername/zsh-quick-boot.git
+git clone https://github.com/AndruGomes13/zsh-quick-boot.git
 cd zsh-quick-boot
 ./install.sh
 ```
