@@ -59,7 +59,6 @@ case "$(uname -s)" in
 esac
 
 # --- System Deps ---
-# --- System Deps ---
 install_macos_deps() {
   if ! command -v brew >/dev/null 2>&1; then
     echo "❌ Homebrew not found. Install from https://brew.sh" >&2
@@ -70,14 +69,6 @@ install_macos_deps() {
   install_if_missing_brew curl
   install_if_missing_brew zsh
   install_if_missing_brew fzf
-
-  # Set up fzf keybindings/completion without touching rc files
-  # Only if installer exists (brew) and to avoid re-running unnecessarily.
-  local fzf_installer
-  fzf_installer="$(brew --prefix 2>/dev/null)/opt/fzf/install"
-  if [[ -x "$fzf_installer" ]]; then
-    yes | "$fzf_installer" --no-update-rc >/dev/null
-  fi
 }
 
 
@@ -102,12 +93,13 @@ install_linux_deps() {
   fi
 }
 
+echo "Installing Dependencies for: $PLATFORM"
 if [[ "$PLATFORM" == "macos" ]]; then
-  install_macos_deps
+  install_macos_deps || echo "⚠️ macOS deps step returned non-zero; continuing."
 else
   install_linux_deps
 fi
-
+echo "Installed depedencies."
 
 
 # --- Install Oh My Zsh + Plugins ---
