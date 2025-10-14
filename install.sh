@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Aux Functions
+has_sudo() {
+  if [ "$EUID" -eq 0 ]; then return 0; fi
+  command -v sudo >/dev/null 2>&1 || return 1
+  sudo -n true >/dev/null 2>&1 || { sudo -v && sudo -n true >/dev/null 2>&1; }
+}
+
 # 1. detect platform
 OS="$(uname -s)"
 case "$OS" in
