@@ -105,7 +105,7 @@ echo "Installed depedencies."
 # --- Install Oh My Zsh + Plugins ---
 
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
 fi
 
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
